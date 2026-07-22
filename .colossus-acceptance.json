@@ -1,5 +1,5 @@
 {
   "ready_testid": "app-ready",
-  "expect_text": [],
-  "reject_signatures": ["home-title\">Welcome<", "backend unreachable", "checking…"]
+  "expect_text": ["my tasks", "add task", "task list"],
+  "reject_signatures": ["home-title\">Welcome<", "backend unreachable", "checking…", "home-title\">Users<"]
 }

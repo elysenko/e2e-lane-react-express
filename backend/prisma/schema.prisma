@@ -20,3 +20,15 @@ model User {
   role      Role     @default(USER)
   createdAt DateTime @default(now())
 }
+
+// Task list domain model. `status` is stored as the string 'todo' | 'done' (display-only
+// per spec); no authentication is attached — tasks are a public resource. `createdAt` maps
+// to the `created_at` column and is serialized as `created_at` in the JSON API.
+model Task {
+  id        Int      @id @default(autoincrement())
+  title     String
+  status    String   @default("todo")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("tasks")
+}
