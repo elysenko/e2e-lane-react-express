@@ -28,9 +28,7 @@ export default function NewTaskPage() {
       if (status === 400) {
         setError('Please enter a title.');
       } else {
-        // Offline/preview: still return to the list so the flow is demonstrable.
-        navigate('/tasks');
-        return;
+        setError('Something went wrong. Please try again.');
       }
     } finally {
       setSubmitting(false);

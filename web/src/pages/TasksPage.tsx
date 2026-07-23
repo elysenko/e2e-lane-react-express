@@ -3,20 +3,11 @@ import { Link } from 'react-router-dom';
 import { api, type Task } from '../lib/api';
 import StatusBadge from '../components/StatusBadge';
 
-// Seed data mirrors the server's seed-on-empty behaviour so the preview is never blank
-// when the API is unreachable (static mockup). Two "todo" + one "done" exercise both badges.
-const DEMO_TASKS: Task[] = [
-  { id: 1, title: 'Review the project brief', status: 'todo' },
-  { id: 2, title: 'Draft the launch checklist', status: 'todo' },
-  { id: 3, title: 'Set up the repository', status: 'done' },
-];
-
 type LoadState = 'loading' | 'ready' | 'error';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [state, setState] = useState<LoadState>('loading');
-  const [demo, setDemo] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -28,10 +19,7 @@ export default function TasksPage() {
       })
       .catch(() => {
         if (!alive) return;
-        // Fall back to demo content so the mockup renders meaningfully offline.
-        setTasks(DEMO_TASKS);
-        setDemo(true);
-        setState('ready');
+        setState('error');
       });
     return () => {
       alive = false;
@@ -48,7 +36,6 @@ export default function TasksPage() {
           {state === 'ready' && (
             <p className="page__subtitle">
               {tasks.length} task{tasks.length === 1 ? '' : 's'} · {done} done
-              {demo && <span className="hint"> · demo data</span>}
             </p>
           )}
         </div>
