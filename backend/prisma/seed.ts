@@ -2,7 +2,7 @@
 // `SEED_CRED <ROLE> <email> <password>` line (or a single SEED_CREDS_JSON line) —
 // the deploy activity sync_seed_credentials parses stdout to populate
 // deployments.appDemoCredentials. Keep these lines when extending this seed.
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { createHash } from 'crypto';
 
 const prisma = new PrismaClient();
@@ -18,9 +18,9 @@ function hashPassword(password: string): string {
   return createHash('sha256').update(password).digest('hex');
 }
 
-const SEED_USERS: Array<{ email: string; name: string; role: Role }> = [
-  { email: 'admin@example.com', name: 'Admin User', role: Role.ADMIN },
-  { email: 'user@example.com', name: 'Regular User', role: Role.USER },
+const SEED_USERS: Array<{ email: string; name: string; role: string }> = [
+  { email: 'admin@example.com', name: 'Admin User', role: 'ADMIN' },
+  { email: 'user@example.com', name: 'Regular User', role: 'USER' },
 ];
 
 async function main(): Promise<void> {
