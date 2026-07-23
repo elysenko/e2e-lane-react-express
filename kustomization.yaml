@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: colossus-e2e-lane-react-express
+namespace: colossus-e2e-lane-react-express-staging
 resources:
   - k8s/deployment.yaml
   - k8s/service.yaml
   - k8s/ingress.yaml
 images:
-  - name: ubuntu:30500/e2e-lane-react-express
-    digest: sha256:62249b6411b5500e5beaa495df345270b4be31ca2abcabf4ba1875363410b13e
+  - name: ubuntu:30500/e2e-lane-react-express-staging
+    digest: sha256:c277657ffa1c1eb31a21cb6a1fb8148bdfd58e1a0a21690387a4527e1796ffec
 # Redeploy:  kubectl apply -k . (re-applies this exact image)
 # Rebuild:   re-trigger the deploy pipeline for branch main in Colossus

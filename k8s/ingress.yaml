@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: e2e-lane-react-express
-  namespace: colossus-e2e-lane-react-express
+  name: e2e-lane-react-express-staging
+  namespace: colossus-e2e-lane-react-express-staging
   labels:
-    app: e2e-lane-react-express
+    app: e2e-lane-react-express-staging
     managed-by: colossus
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -15,11 +15,11 @@ spec:
     - host: ubuntu.desmana-truck.ts.net
       http:
         paths:
-          - path: /e2e-lane-react-express(/|$)(.*)
+          - path: /e2e-lane-react-express-staging(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: e2e-lane-react-express
+                name: e2e-lane-react-express-staging
                 port:
                   number: 80
   tls:
