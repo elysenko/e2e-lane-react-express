@@ -32,7 +32,7 @@ export default function TasksPage() {
     <section className="page">
       <div className="page__head">
         <div>
-          <h1 className="page__title" data-testid="tasks-title">My Task Board</h1>
+          <h1 className="page__title" data-testid="tasks-title">My Tasks</h1>
           {state === 'ready' && (
             <p className="page__subtitle">
               {tasks.length} task{tasks.length === 1 ? '' : 's'} · {done} done
