@@ -40,7 +40,7 @@ export default function TasksPage() {
           )}
         </div>
         <Link to="/tasks/new" className="btn btn--primary" data-testid="add-task-link">
-          <span aria-hidden>+</span> New Task
+          <span aria-hidden>＋</span> Add Task
         </Link>
       </div>
 
