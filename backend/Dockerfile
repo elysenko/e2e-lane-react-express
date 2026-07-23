@@ -12,6 +12,13 @@ FROM node:20-alpine AS run
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
+# Self-contained SQLite: no external DB/secret is provisioned, so the container owns its
+# own data file. DATA_DIR/app.db is created below and matches lib/prisma.ts's fallback.
+ENV DATA_DIR=/app/data
+ENV DATABASE_URL=file:/app/data/app.db
 COPY --from=build /app ./
+RUN mkdir -p /app/data
 EXPOSE 3000
-CMD sh -c 'npx prisma migrate deploy || npx prisma db push --accept-data-loss || true; npm run start:prod'
+# `prisma db push` creates the SQLite schema from scratch on every boot (idempotent, no
+# migration history needed for an ephemeral DB); task seeding runs in server.js on startup.
+CMD sh -c 'npx prisma db push --skip-generate --accept-data-loss || true; npm run start:prod'

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "a1-1",
+    "category": "wrong_behavior",
+    "file": "web/src/pages/TasksPage.tsx",
+    "description": "On GET /api/tasks failure the page falls back to hardcoded demo tasks and state ready instead of showing the required error state, so the tasks-error UI is unreachable dead code.",
+    "check": {
+      "kind": "grep",
+      "file": "web/src/pages/TasksPage.tsx",
+      "pattern": "setState\\('error'\\)",
+      "expect": "present"
+    },
+    "status": "fixed",
+    "raised_attempt": 1,
+    "times_raised": 1,
+    "fixed_by_commit": "7f75e270092252dc489f0fa9847e7889ff81c874",
+    "patched_attempt": 1
+  },
+  {
+    "id": "a1-2",
+    "category": "wrong_behavior",
+    "file": "web/src/pages/NewTaskPage.tsx",
+    "description": "On a non-400 POST /api/tasks failure (e.g. 500) the form silently navigates back to /tasks and discards the typed title instead of showing an error and preserving input.",
+    "check": {
+      "kind": "grep",
+      "file": "web/src/pages/NewTaskPage.tsx",
+      "pattern": "Offline/preview: still return to the list",
+      "expect": "absent"
+    },
+    "status": "fixed",
+    "raised_attempt": 1,
+    "times_raised": 1,
+    "fixed_by_commit": "7f75e270092252dc489f0fa9847e7889ff81c874",
+    "patched_attempt": 1
+  }
+]
