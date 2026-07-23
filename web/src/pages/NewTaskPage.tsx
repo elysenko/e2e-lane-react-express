@@ -40,7 +40,7 @@ export default function NewTaskPage() {
       <nav className="crumbs">
         <Link to="/tasks">← Back to tasks</Link>
       </nav>
-      <h1 className="page__title" data-testid="new-task-title">Add Task</h1>
+      <h1 className="page__title" data-testid="new-task-title">+ New Task</h1>
       <p className="page__subtitle">Give your task a short, clear title.</p>
 
       <form className="card form" onSubmit={submit} data-testid="new-task-form" noValidate>
